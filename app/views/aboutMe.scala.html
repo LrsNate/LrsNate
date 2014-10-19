@@ -1,0 +1,57 @@
+@()
+
+@main("Nate | About me.")(Seq("css/aboutme.css")) {
+  <div class="container">
+    <div id="body">
+      <div id="title" class="row">
+        <div class="col-sm-3">
+          <img src="http://www.gravatar.com/avatar/91ccbb738a034632a3891ce97bf20c09?s=300" alt="avatar" class="img-circle">
+        </div>
+        <p class="col-sm-9">
+          Computational linguistics major @@ <a href="http://www.univ-paris-diderot.fr">Paris-Diderot University</a>,<br />
+          Class of 2013 @@ <a href="http://42.fr">42 Born2Code</a>,<br>
+          Severe otaku.
+        </p>
+      </div>
+      <p>
+        Hello! I'm a student in computer science who lives in Paris, France.
+        As you could guess from what you've just read above, I am currently
+        preparing a master's degree in computational linguistics at University of Paris-7,
+        and I'm also a student from the class of 2013 at 42. For the second semester of 2014,
+        I work as an intern web developer at <a href="http://www.canalplus.fr/">CANAL+</a>,
+        and I am currently looking for an internship from march to august 2015.
+      </p>
+      <p>
+        I originally graduated from high school in humanities, and kept
+        convincing myself that writing code would only be a hobby...until I
+        actually tried coding in an academic context &mdash; that would be in my
+        third year in college &mdash; and faced the obvious: I wanted to be
+        a developer.
+      </p>
+      <p>
+        The languages I've used so far are various, but at 42 I'm mainly using <strong>C</strong>
+        and <strong>C++</strong>. As for the university, I'm mainly using <strong>Java</strong> and
+        <strong>Python</strong>, which led me to experiment several web frameworks, including
+        <strong>Symfony2</strong> and <strong>Django</strong>. But the one I'm using to power
+        the page you are reading is <strong>Play 2</strong>, which I'll be covering in more details
+        <a href="@routes.About.site()">here</a>.
+      </p>
+      <p>
+        My main coding machine is a Macbook Pro, and as such most of my developing is done
+        on <strong>OS X</strong>. I also work with <strong>Ubuntu</strong> on a regular
+        basis and I tend to deploy servers on <strong>Debian</strong>. I also tried a couple
+        other distributions such as <strong>Fedora</strong> and <strong>OpenSuSE</strong>,
+        but I guess when you grow up in the Debian universe, it's kinda hard to get rid
+        of habits :)
+      </p>
+      <p>
+        And mind you, I do have hobbies besides coding! I watch anime, I run
+        when I have time to &mdash; which rarely happens when you attend
+        two schools at the same time &mdash; and I play the piano. So maybe
+        one day, when I get the skill and the courage to do it, I might upload
+        something on YouTube to that regard. Stay tuned :)
+      </p>
+    </div>
+  </div>
+  <script src="@routes.Assets.at("js/aboutme.js")"></script>
+}

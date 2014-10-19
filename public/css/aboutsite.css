@@ -1,0 +1,40 @@
+#container
+{
+    font-size: 20px;
+    line-height: 35px;
+    margin: auto;
+    max-width:500px;
+}
+
+#container p
+{
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.bs-purple
+{
+    color: #5D4384;
+}
+
+.bs-purple:hover
+{
+    color: #5D4384;
+}
+
+.logo
+{
+    width: 100%;
+    text-align: center;
+}
+
+.logo, h2
+{
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+h1, h2
+{
+    text-align: center;
+}

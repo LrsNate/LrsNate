@@ -1,0 +1,39 @@
+#body
+{
+    max-width: 768px;
+    margin: auto;
+}
+
+#body p
+{
+    text-align: justify;
+    text-justify: inter-word;
+    max-width: 500px;
+    margin: auto;
+    font-size: 20px;
+    margin-bottom: 50px;
+    line-height: 35px;
+}
+
+#title
+{
+    margin-bottom: 20px;
+}
+
+#title img
+{
+    display: block;
+    margin: auto;
+    width: 150px;
+    height: 150px;
+}
+
+#title p
+{
+    max-width: inherit;
+    padding-left: 10px;
+    font-size: 20px;
+    font-style: oblique;
+    vertical-align: middle;
+    margin-top: 25px;
+}

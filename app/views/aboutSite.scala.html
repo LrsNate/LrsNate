@@ -1,0 +1,80 @@
+@()
+
+@main("Nate | About this site.")(Seq("css/aboutsite.css")) {
+  <div class="container">
+    <div id="container">
+      <h1>About this website</h1>
+      <p>
+        Chances are you came wondering what kind of technologies were involved
+        in making this simple personal webpage. Though they are not numerous,
+        I do want to properly mention them and thank the developers for their
+        work, because they really rock :)
+      </p>
+      <div class="logo">
+        <a href="http://scala-lang.org/">
+          <img src="@routes.Assets.at("img/scala.png")" class="brand-logo">
+        </a>
+      </div>
+      <p>
+        Scala can be defined by, I quote: "Object-Oriented meets Functional",
+        and I think that phrase catches the main idea of that language. It
+        runs on a <abbr title="Java Virtual Machine">JVM</abbr>, and it has
+        everything a Java program can run with (since it can actually run Java code),
+        and it bundles an elegant functional syntax which allows you to do everything
+        with scarce &mdash; if any &mdash; boilerplate code. All in all, it's a
+        language I love to bits, which is why I'm using it to power this website.
+        So kudos to <a href="http://lampwww.epfl.ch/~odersky/">Martin Odersky</a> and
+        his team at <a href="http://www.epfl.ch/">EPFL</a> for designing it :)
+      </p>
+      <div class="logo">
+        <a href="https://www.playframework.com">
+          <img src="@routes.Assets.at("img/play.png")" class="brand-logo">
+        </a>
+      </div>
+      <p>
+        Play is THE framework you want to use if you're doing any web development with
+        Scala. Of course, thanks to the very nature of Scala it can also be run with
+        Java, and thanks to it using <a href="http://netty.io/">Netty</a> as a web server
+        and <a href="http://akka.io/">Akka</a> to manage its threads,
+        it has tremendous performance. And thanks to Scala's syntax, it can run with very
+        little code! Not to mention that it's bundled with a powerful and comprehensive API,
+        including a great JSON library based on Jackson which makes it very REST-ready.
+      </p>
+      <p>
+        This kind of reasoning is why people at <a href="https://www.linkedin.com/">LinkedIn</a>
+        chose Play as their runtime framework, as many others have! And I personally think
+        it's a pleasure to use it.
+      </p>
+      <h2><a href="http://getbootstrap.com/" class="bs-purple">Bootstrap</a></h2>
+      <p>
+        Bootstrap is one of the most &mdash; yet again, if not the most &mdash;
+        popular CSS frameworks there is. It provides a solid CSS reset and
+        normaliser, a very powerful grid system, mobile-oriented design
+        patterns and much more!
+      </p>
+      <p>
+        Bootstrap also includes the complete set of
+        <a href="http://glyphicons.com/">Glyphicon halflings</a> thanks to their creator
+        who made them available for free to Bootstrap users, so thanks!
+      </p>
+      <div class="logo">
+        <a href="http://heroku.com/">
+          <img src="@routes.Assets.at("img/heroku.png")" class="brand-logo">
+        </a>
+      </div>
+      <p>
+        Heroku is a hosting service, and it's now powered by Salesforce! They
+        have great uptime, a lot of power since they run on Amazon S3s and they
+        have a free plan. But what I think is their greatest strength is their
+        ability to deploy web apps of any kind without any configuration on the
+        developer's side, even if it runs on some weird platform such as Rails,
+        Django, Node.js...You name it. Just push your git repository out there
+        and boom! A magic second later you can watch your app live on the
+        Internets. They also provide a PostGreSQL database by default and a
+        <em>fuckton</em>other add-ons &mdash; they really have everything you
+        might think of, let alone need.
+      </p>
+    </div>
+  </div>
+  <script src="@routes.Assets.at("js/aboutsite.js")"></script>
+}
