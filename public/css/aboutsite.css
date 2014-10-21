@@ -12,12 +12,7 @@
     text-justify: inter-word;
 }
 
-.bs-purple
-{
-    color: #5D4384;
-}
-
-.bs-purple:hover
+.bs-purple, .bs-purple:hover
 {
     color: #5D4384;
 }

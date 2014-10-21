@@ -4,6 +4,8 @@
 
 # Home page
 
+GET        /anime/watching      controllers.Anime.watching
+
 GET        /                    controllers.Home.index
 
 # Map static resources from the /public folder to the /assets URL path

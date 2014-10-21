@@ -1,22 +1,26 @@
 var app = angular.module('nateApp', [
-    'ngRoute',
+    'ui.router',
     'aboutControllers'
 ]);
 
-app.config(['$routeProvider',
-    function ($routeProvider) {
-        $routeProvider.
-            when('/about/me', {
+app.config(['$stateProvider',
+            '$urlRouterProvider',
+    function ($stateProvider, $urlRouterProvider) {
+        $stateProvider.
+            state('aboutMe', {
+                url: '/about/me',
                 templateUrl: '/assets/part/about-me.html',
                 controller: 'aboutMeCtrl'
-
             }).
-            when('/about/site', {
+            state('aboutSite', {
+                url: '/about/site',
                 templateUrl: '/assets/part/about-site.html',
                 controller: 'aboutSiteCtrl'
-            }).
-            otherwise({
-                redirectTo: '/about/me'
             });
+        $urlRouterProvider.otherwise('/about/me');
     }
 ]);
+
+app.run(function () {
+    Origami.fastclick(document.body);
+});
