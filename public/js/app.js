@@ -16,7 +16,7 @@ app.config(['$routeProvider',
                 controller: 'aboutSiteCtrl'
             }).
             otherwise({
-                reirectTo: '/about/me'
+                redirectTo: '/about/me'
             });
     }
 ]);
