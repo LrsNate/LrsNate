@@ -3,8 +3,6 @@
 # ~~~~
 
 # Home page
-GET        /about/me            controllers.About.me
-GET        /about/site          controllers.About.site
 
 GET        /                    controllers.Home.index
 

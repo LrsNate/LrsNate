@@ -1,26 +1,25 @@
-#body
+#aboutme-body
 {
     max-width: 768px;
     margin: auto;
 }
 
-#body p
+#aboutme-body p
 {
     text-align: justify;
     text-justify: inter-word;
     max-width: 500px;
-    margin: auto;
     font-size: 20px;
-    margin-bottom: 50px;
+    margin: auto auto 50px;
     line-height: 35px;
 }
 
-#title
+#aboutme-title
 {
     margin-bottom: 20px;
 }
 
-#title img
+#aboutme-title img
 {
     display: block;
     margin: auto;
@@ -28,7 +27,7 @@
     height: 150px;
 }
 
-#title p
+#aboutme-title p
 {
     max-width: inherit;
     padding-left: 10px;
