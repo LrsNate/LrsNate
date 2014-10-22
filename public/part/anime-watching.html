@@ -1,5 +1,5 @@
-<div class="container-fluid">
-  <div class="animewatching-entry" ng-repeat="anime in animelist">
+<div class="container-fluid" ng-switch on="animewatching_status">
+  <div class="animewatching-entry" ng-repeat="anime in animelist" ng-switch-when="ok">
     <div class="animewatching-caret">
       <div class="animewatching-box">
         <div class="animewatching-text glyphicon glyphicon-chevron-down"></div>
@@ -18,6 +18,11 @@
           <span ng-if="anime.anime.episode_count == 0">?</span>
         </p>
       </div>
+    </div>
+  </div>
+  <div ng-switch-when="loading">
+    <div id="animewatching-loading">
+      <img src="/assets/img/ajax-loader.gif"> Loading...
     </div>
   </div>
 </div>
