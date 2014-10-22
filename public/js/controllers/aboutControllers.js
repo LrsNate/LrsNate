@@ -1,15 +1,17 @@
-var aboutControllers = angular.module('aboutControllers', []);
+var aboutControllers = angular.module('aboutControllers', [
+    'navbarServices'
+]);
 
-aboutControllers.controller('aboutMeCtrl', [function () {
-    var toggle = angular.element('.navbar-toggle');
-    angular.element('#navbar-about').addClass('active');
-    if (!toggle.hasClass('collapsed'))
-        toggle.click();
-}]);
+aboutControllers.controller('aboutMeCtrl', [
+    'navbarService',
+    function (navbarService) {
+        navbarService.setPage('about')
+    }
+]);
 
-aboutControllers.controller('aboutSiteCtrl', [function () {
-    var toggle = angular.element('.navbar-toggle');
-    angular.element('#navbar-about').addClass('active');
-    if (!toggle.hasClass('collapsed'))
-        toggle.click();
-}]);
+aboutControllers.controller('aboutSiteCtrl', [
+    'navbarService',
+    function (navbarService) {
+        navbarService.setPage('about')
+    }
+]);

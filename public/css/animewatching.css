@@ -1,0 +1,38 @@
+.animewatching-entry {
+    height: 50px;
+    display: flex;
+    justify-content: flex-start;
+    border-bottom: 1px solid lightgray;
+}
+
+.animewatching-entry > * {
+    height: 100%;
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.animewatching-box {
+    height: 100%;
+    display: table;
+}
+
+.animewatching-text {
+    vertical-align: middle;
+    display: table-cell;
+}
+
+.animewatching-caret {
+    width: 20px;
+}
+
+.animewatching-progress {
+    margin-left: auto;
+    text-align: center;
+    width: 100px;
+}
+
+.animewatching-progress > .animewatching-box {
+    margin-left: auto;
+    margin-right: auto;
+}
