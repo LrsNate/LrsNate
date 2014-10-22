@@ -21,8 +21,14 @@
     </div>
   </div>
   <div ng-switch-when="loading">
-    <div id="animewatching-loading">
+    <div class="animewatching-splash">
       <img src="/assets/img/ajax-loader.gif"> Loading...
+    </div>
+  </div>
+  <div ng-switch-when="error">
+    <div class="animewatching-splash">
+      <p><span class="glyphicon glyphicon-warning-sign"></span> An error occurred.</p>
+      <p><button class="btn btn-default" ng-click="animeWatchingLoad()">Retry</button></p>
     </div>
   </div>
 </div>

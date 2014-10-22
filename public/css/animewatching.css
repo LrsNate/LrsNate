@@ -52,7 +52,7 @@
     to { transform: scale(1) rotate(360deg);}
 }
 
-#animewatching-loading {
+.animewatching-splash {
     margin-top: 100px;
     text-align: center;
     font-size: 18px;
