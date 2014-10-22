@@ -1,5 +1,6 @@
 var app = angular.module('nateApp', [
     'ui.router',
+    'navbarServices',
     'aboutControllers',
     'animeControllers'
 ]);
@@ -27,6 +28,10 @@ app.config(['$stateProvider',
     }
 ]);
 
-app.run(function () {
-    Origami.fastclick(document.body);
-});
+app.run([
+    'navbarService',
+    function (navbarService) {
+        navbarService.init();
+        Origami.fastclick(document.body);
+    }
+]);
