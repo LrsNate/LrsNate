@@ -1,41 +1,45 @@
-<div class="container-fluid" ng-switch on="animewatching_status">
-  <!--
-  <div class="animewatching-entry" ng-repeat="anime in animelist" ng-switch-when="ok">
-    <div class="animewatching-caret">
-      <div class="animewatching-box">
-        <div class="animewatching-text glyphicon glyphicon-chevron-down"></div>
-      </div>
-    </div>
-    <div class="animewatching-title">
-      <div class="animewatching-box">
-        <p class="animewatching-text">{{ anime.anime.title }}</p>
-      </div>
-    </div>
-    <div class="animewatching-progress">
-      <div class="animewatching-box">
-        <p class="animewatching-text">
-          {{ anime.episodes_watched}} /
-          <span ng-if="anime.anime.episode_count > 0">{{ anime.anime.episode_count }}</span>
-          <span ng-if="anime.anime.episode_count == 0">?</span>
-        </p>
-      </div>
-    </div>
+<div class="container-fluid" ng-switch on="aw_status">
+  <div ng-switch-when="ok">
+    <accordion close-others="true">
+      <accordion-group ng-repeat="anime in animelist" is-open="status.open">
+        <accordion-heading>
+          <div class="aw-entry" ng-class="{'aw-entry-first': $first}">
+              <div class="aw-caret">
+                <div class="aw-box">
+                  <div class="aw-text glyphicon" ng-class="{'glyphicon-chevron-down': !status.open, 'glyphicon-chevron-up': status.open}"></div>
+                </div>
+              </div>
+              <div class="aw-title">
+                <div class="aw-box">
+                  <p class="aw-text">{{ anime.anime.title }}</p>
+                </div>
+              </div>
+              <div class="aw-progress">
+                <div class="aw-box">
+                  <p class="aw-text">
+                    {{ anime.episodes_watched}} /
+                    <span ng-if="anime.anime.episode_count > 0">{{ anime.anime.episode_count }}</span>
+                    <span ng-if="anime.anime.episode_count == 0">?</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+        </accordion-heading>
+        <div class="aw-body">
+          {{ anime.anime.synopsis }}
+        </div>
+      </accordion-group>
+    </accordion>
   </div>
   <div ng-switch-when="loading">
-    <div class="animewatching-splash">
+    <div class="aw-splash">
       <img src="/assets/img/ajax-loader.gif"> Loading...
     </div>
   </div>
   <div ng-switch-when="error">
-    <div class="animewatching-splash">
+    <div class="aw-splash">
       <p><span class="glyphicon glyphicon-warning-sign"></span> An error occurred.</p>
       <p><button class="btn btn-default" ng-click="animeWatchingLoad()">Retry</button></p>
     </div>
   </div>
-  -->
-  <accordion close-others="true">
-    <accordion-group heading="{{ anime.anime.title }}" ng-repeat="anime in animelist">
-      {{ anime.anime.synopsis }}
-    </accordion-group>
-  </accordion>
 </div>

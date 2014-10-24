@@ -1,4 +1,14 @@
-.animewatching-entry {
+.aw-entry-first {
+    border-top: 1px solid lightgray;
+}
+
+.aw-body {
+    padding-top: 10px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid lightgray;
+}
+
+.aw-entry {
     height: 50px;
     display: -webkit-box;
     display: -webkit-flex;
@@ -14,35 +24,35 @@
     border-bottom: 1px solid lightgray;
 }
 
-.animewatching-entry > * {
+.aw-entry > * {
     height: 100%;
     display: inline-block;
     padding-left: 10px;
     padding-right: 10px;
 }
 
-.animewatching-box {
+.aw-box {
     width: 100%;
     height: 100%;
     display: table;
 }
 
-.animewatching-text {
+.aw-text {
     vertical-align: middle;
     display: table-cell;
 }
 
-.animewatching-caret {
+.aw-caret {
     width: 20px;
 }
 
-.animewatching-progress {
+.aw-progress {
     margin-left: auto;
     text-align: center;
     width: 100px;
 }
 
-.animewatching-splash {
+.aw-splash {
     margin-top: 100px;
     text-align: center;
     font-size: 18px;
