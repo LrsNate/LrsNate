@@ -33,14 +33,10 @@ animeControllers.controller('animeWatchingCtrl', [
 
 animeControllers.config(function($provide) {
     $provide.decorator('accordionDirective', function($delegate) {
-        //array of datepicker directives
-        console.log($delegate);
         $delegate[0].templateUrl = "/assets/tpl/accordion.html";
         return $delegate;
     });
     $provide.decorator('accordionGroupDirective', function($delegate) {
-        //array of datepicker directives
-        console.log($delegate);
         $delegate[0].templateUrl = "/assets/tpl/accordion-group.html";
         return $delegate;
     });
