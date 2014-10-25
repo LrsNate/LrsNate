@@ -25,8 +25,13 @@
               </div>
             </div>
         </accordion-heading>
-        <div class="aw-body">
-          {{ anime.anime.synopsis }}
+        <div class="aw-body row">
+          <div class="aw-left col-sm-3">
+            <img class="aw-cover" ng-src="{{ anime.anime.cover_image }}">
+          </div>
+          <div class="col-sm-9">
+            {{ anime.anime.synopsis }}
+          </div>
         </div>
       </accordion-group>
     </accordion>

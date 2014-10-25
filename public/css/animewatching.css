@@ -40,6 +40,7 @@
 .aw-text {
     vertical-align: middle;
     display: table-cell;
+    cursor: default;
 }
 
 .aw-caret {
@@ -50,6 +51,15 @@
     margin-left: auto;
     text-align: center;
     width: 100px;
+}
+
+.aw-cover {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: 250px;
+    margin-bottom: 20px;
 }
 
 .aw-splash {
