@@ -1,7 +1,7 @@
 <div class="container-fluid" ng-switch on="aw_status">
   <div ng-switch-when="ok">
     <accordion close-others="true">
-      <accordion-group ng-repeat="anime in animelist" is-open="status.open">
+      <accordion-group ng-repeat="anime in animelist | orderBy:'last_watched':true" is-open="status.open">
         <accordion-heading>
           <div class="aw-entry" ng-class="{'aw-entry-first': $first}">
               <div class="aw-caret">
@@ -17,7 +17,7 @@
               <div class="aw-progress">
                 <div class="aw-box">
                   <p class="aw-text">
-                    {{ anime.episodes_watched}} /
+                    {{ anime.episodes_watched }} /
                     <span ng-if="anime.anime.episode_count > 0">{{ anime.anime.episode_count }}</span>
                     <span ng-if="anime.anime.episode_count == 0">?</span>
                   </p>
