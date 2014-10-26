@@ -1,7 +1,7 @@
 <div class="container-fluid" ng-switch on="aw_status">
   <div ng-switch-when="ok">
     <accordion close-others="true">
-      <accordion-group ng-repeat="anime in animelist | orderBy:'last_watched':true" is-open="status.open">
+      <accordion-group ng-repeat="anime in anime.watching | orderBy:'last_watched':true" is-open="status.open">
         <accordion-heading>
           <div class="aw-entry" ng-class="{'aw-entry-first': $first}">
               <div class="aw-caret">

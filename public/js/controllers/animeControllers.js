@@ -13,10 +13,10 @@ animeControllers.controller('animeWatchingCtrl', [
 
         $scope.animeWatchingLoad = function () {
             $scope.aw_status = "loading";
-            $scope.animelist = [];
-            restService.getAnimeWatching(function (data, status) {
+            $scope.animelist = {};
+            restService.getAnimelists(function (data, status) {
                 if (status / 100 == 2) {
-                    $scope.animelist = data;
+                    $scope.anime = data;
                     $scope.aw_status = "ok";
                 }
                 else {

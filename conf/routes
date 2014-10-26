@@ -4,6 +4,7 @@
 
 # Home page
 
+GET        /anime/lists         controllers.Anime.lists
 GET        /anime/watching      controllers.Anime.watching
 
 GET        /                    controllers.Home.index
