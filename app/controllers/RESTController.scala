@@ -6,7 +6,7 @@ import play.api.Play.current
 
 trait RESTController extends Controller {
 
-  val cacheDuration = 300
+  val cacheDuration = 3600 * 24
 
   def cached(key: String) = Cached.status(_ => key, OK, cacheDuration)(_)
 }

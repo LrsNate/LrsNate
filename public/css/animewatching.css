@@ -43,6 +43,10 @@
     cursor: default;
 }
 
+.aw-title {
+    margin-left: 10px;
+}
+
 .aw-caret {
     width: 20px;
 }

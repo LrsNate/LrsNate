@@ -31,6 +31,12 @@ animeControllers.controller('animeWatchingCtrl', [
     }
 ]);
 
+animeControllers.filter('slice', function () {
+    return function (arr, start, end) {
+        return arr.slice(start, end);
+    };
+});
+
 animeControllers.config(function($provide) {
     $provide.decorator('accordionDirective', function($delegate) {
         $delegate[0].templateUrl = "/assets/tpl/accordion.html";

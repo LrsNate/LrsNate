@@ -1,5 +1,6 @@
 <div class="container-fluid" ng-switch on="aw_status">
   <div ng-switch-when="ok">
+    <h2>Currently watching</h2>
     <accordion close-others="true">
       <accordion-group ng-repeat="anime in anime.watching | orderBy:'last_watched':true" is-open="status.open">
         <accordion-heading>
@@ -30,7 +31,51 @@
             <img class="aw-cover" ng-src="{{ anime.anime.cover_image }}">
           </div>
           <div class="col-sm-9">
-            {{ anime.anime.synopsis }}
+            <p ng-if="anime.anime.alternate_title">
+              <strong>Alternate title: </strong>
+              <em>{{ anime.anime.alternate_title }}</em>
+            </p>
+            <p><strong>Type:</strong> <em>{{ anime.anime.show_type }}</em></p>
+            <p>{{ anime.anime.synopsis }}</p>
+          </div>
+        </div>
+      </accordion-group>
+    </accordion>
+    <h2>Recently completed</h2>
+    <accordion close-others="true">
+      <accordion-group ng-repeat="anime in anime.completed | orderBy:'last_watched':true | slice:0:1" is-open="status.open">
+        <accordion-heading>
+          <div class="aw-entry" ng-class="{'aw-entry-first': $first}">
+            <div class="aw-caret">
+              <div class="aw-box">
+                <div class="aw-text glyphicon" ng-class="{'glyphicon-chevron-down': !status.open, 'glyphicon-chevron-up': status.open}"></div>
+              </div>
+            </div>
+            <div class="aw-title">
+              <div class="aw-box">
+                <p class="aw-text">{{ anime.anime.title }}</p>
+              </div>
+            </div>
+            <div class="aw-progress">
+              <div class="aw-box">
+                <p class="aw-text">
+                  {{ anime.episodes_watched }} ep.
+                </p>
+              </div>
+            </div>
+          </div>
+        </accordion-heading>
+        <div class="aw-body row">
+          <div class="aw-left col-sm-3">
+            <img class="aw-cover" ng-src="{{ anime.anime.cover_image }}">
+          </div>
+          <div class="col-sm-9">
+            <p ng-if="anime.anime.alternate_title">
+              <strong>Alternate title: </strong>
+              <em>{{ anime.anime.alternate_title }}</em>
+            </p>
+            <p><strong>Type:</strong> <em>{{ anime.anime.show_type }}</em></p>
+            <p>{{ anime.anime.synopsis }}</p>
           </div>
         </div>
       </accordion-group>
