@@ -5,26 +5,26 @@
       <accordion-group ng-repeat="anime in anime.watching | orderBy:'last_watched':true" is-open="status.open">
         <accordion-heading>
           <div class="aw-entry" ng-class="{'aw-entry-first': $first}">
-              <div class="aw-caret">
-                <div class="aw-box">
-                  <div class="aw-text glyphicon" ng-class="{'glyphicon-chevron-down': !status.open, 'glyphicon-chevron-up': status.open}"></div>
-                </div>
-              </div>
-              <div class="aw-title">
-                <div class="aw-box">
-                  <p class="aw-text">{{ anime.anime.title }}</p>
-                </div>
-              </div>
-              <div class="aw-progress">
-                <div class="aw-box">
-                  <p class="aw-text">
-                    {{ anime.episodes_watched }} /
-                    <span ng-if="anime.anime.episode_count > 0">{{ anime.anime.episode_count }}</span>
-                    <span ng-if="anime.anime.episode_count == 0">?</span>
-                  </p>
-                </div>
+            <div class="aw-caret">
+              <div class="aw-box">
+                <div class="aw-text glyphicon" ng-class="{'glyphicon-chevron-down': !status.open, 'glyphicon-chevron-up': status.open}"></div>
               </div>
             </div>
+            <div class="aw-title">
+              <div class="aw-box">
+                <p class="aw-text">{{ anime.anime.title }}</p>
+              </div>
+            </div>
+            <div class="aw-progress">
+              <div class="aw-box">
+                <p class="aw-text">
+                  {{ anime.episodes_watched }} /
+                  <span ng-if="anime.anime.episode_count > 0">{{ anime.anime.episode_count }}</span>
+                  <span ng-if="anime.anime.episode_count == 0">?</span>
+                </p>
+              </div>
+            </div>
+          </div>
         </accordion-heading>
         <div class="aw-body row">
           <div class="aw-left col-sm-3">
@@ -80,6 +80,7 @@
         </div>
       </accordion-group>
     </accordion>
+    <p class="aw-hummingbird">Powered by <a href="http://hummingbird.me/users/LrsNate/library">Hummingbird</a>.</p>
   </div>
   <div ng-switch-when="loading">
     <div class="aw-splash">
