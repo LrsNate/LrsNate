@@ -4,10 +4,12 @@
 
 # Home page
 
-GET        /anime/lists         controllers.Anime.lists
-GET        /anime/watching      controllers.Anime.watching
+GET        /anime/lists           controllers.Anime.lists
+GET        /anime/watching        controllers.Anime.watching
 
-GET        /                    controllers.Home.index
+GET        /twitter/mention       controllers.Twitter.lastMention
+
+GET        /                      controllers.Home.index
 
 # Map static resources from the /public folder to the /assets URL path
-GET        /assets/*file        controllers.Assets.at(path="/public", file)
+GET        /assets/*file          controllers.Assets.at(path="/public", file)
