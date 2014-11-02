@@ -1,8 +1,8 @@
-<div class="container-fluid" ng-switch on="aw_status">
+<div class="container-fluid" ng-switch on="status">
   <div ng-switch-when="ok">
     <h2>Currently watching</h2>
     <accordion close-others="true">
-      <accordion-group ng-repeat="anime in anime.watching | orderBy:'last_watched':true" is-open="status.open">
+      <accordion-group ng-repeat="anime in data.watching | orderBy:'last_watched':true" is-open="status.open">
         <accordion-heading>
           <div class="aw-entry" ng-class="{'aw-entry-first': $first}">
             <div class="aw-caret">
@@ -43,7 +43,7 @@
     </accordion>
     <h2>Recently completed</h2>
     <accordion close-others="true">
-      <accordion-group ng-repeat="anime in anime.completed | orderBy:'last_watched':true | slice:0:1" is-open="status.open">
+      <accordion-group ng-repeat="anime in data.completed | orderBy:'last_watched':true | slice:0:5" is-open="status.open">
         <accordion-heading>
           <div class="aw-entry" ng-class="{'aw-entry-first': $first}">
             <div class="aw-caret">
@@ -83,14 +83,14 @@
     <p class="aw-hummingbird">Powered by <a href="http://hummingbird.me/users/LrsNate/library">Hummingbird</a>.</p>
   </div>
   <div ng-switch-when="loading">
-    <div class="aw-splash">
+    <div class="splash">
       <img src="/assets/img/ajax-loader.gif"> Loading...
     </div>
   </div>
   <div ng-switch-when="error">
-    <div class="aw-splash">
+    <div class="splash">
       <p><span class="glyphicon glyphicon-warning-sign"></span> An error occurred.</p>
-      <p><button class="btn btn-default" ng-click="animeWatchingLoad()">Retry</button></p>
+      <p><button class="btn btn-default" ng-click="loadPage()">Retry</button></p>
     </div>
   </div>
 </div>

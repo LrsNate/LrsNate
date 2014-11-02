@@ -2,7 +2,8 @@ var app = angular.module('nateApp', [
     'ui.router',
     'navbarServices',
     'aboutControllers',
-    'animeControllers'
+    'animeControllers',
+    'homeControllers'
 ]);
 
 app.config(['$stateProvider',
@@ -23,6 +24,11 @@ app.config(['$stateProvider',
                 url: '/anime',
                 templateUrl: '/assets/part/anime-watching.html',
                 controller: 'animeWatchingCtrl'
+            }).
+            state('home', {
+                url: '',
+                templateUrl: '/assets/part/home.html',
+                controller: 'homeCtrl'
             });
         $urlRouterProvider.otherwise('/about/me');
     }

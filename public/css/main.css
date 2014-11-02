@@ -2,6 +2,12 @@
     margin-top: 70px;
 }
 
+.splash {
+    margin-top: 100px;
+    text-align: center;
+    font-size: 18px;
+}
+
 a {
     cursor: pointer;
     -webkit-touch-callout: none;

@@ -1,0 +1,24 @@
+<div class="container-fluid" ng-switch on="status">
+  <div ng-switch-when="ok">
+    <p>Hello, and welcome to my personal page!</p>
+    <p>
+      You might want some information about <a href="#/about/me">me</a> or be
+      curious about <a href="#/about/site">the technologies I used to make this
+      page.</a> Have fun! And feel free to tweet me if you found a bug or feel
+      like I should add a feature.
+    </p>
+    <h3>What's up on Twitter?</h2>
+    <div ng-bind-html="data.html"></div>
+  </div>
+  <div ng-switch-when="loading">
+    <div class="splash">
+      <img src="/assets/img/ajax-loader.gif"> Loading...
+    </div>
+  </div>
+  <div ng-switch-when="error">
+    <div class="splash">
+      <p><span class="glyphicon glyphicon-warning-sign"></span> An error occurred.</p>
+      <p><button class="btn btn-default" ng-click="loadPage()">Retry</button></p>
+    </div>
+  </div>
+</div>

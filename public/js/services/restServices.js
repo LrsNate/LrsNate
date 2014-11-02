@@ -4,8 +4,8 @@ restServices.factory('restService', [
     '$http',
     function ($http) {
         return {
-            getAnimeWatching: function (onComplete) {
-                $http.get('/anime/watching').
+            getTwitter: function (onComplete) {
+                $http.get('/twitter/mention').
                     success(onComplete).
                     error(onComplete);
             },
