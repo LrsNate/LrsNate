@@ -6,19 +6,26 @@ import play.api.libs.oauth.{OAuthCalculator, ConsumerKey, RequestToken}
 import play.api.libs.ws.WS
 import play.api.mvc.Action
 import play.api.Play.current
+import play.api.Play.configuration
 
 object Twitter extends RESTController {
 
   val twitter = "https://api.twitter.com/1.1"
 
+  val appKey = configuration.getString("twitter.app.key").get
+  val appSecret = configuration.getString("twitter.app.secret").get
+
+  val accountToken = configuration.getString("twitter.account.token").get
+  val accountSecret = configuration.getString("twitter.account.secret").get
+
   val oauth = OAuthCalculator(
     ConsumerKey(
-      "BsCQCcC4UK3IjtNJFH4q6ooIV",
-      "TzQOOlbzZjYE20HgFBwmHs2mVw3oy0wsI6uwyBrKc2W8ZhwZrc"
+      appKey,
+      appSecret
     ),
     RequestToken(
-      "238788878-rX76fZFi5chEAyUGtfwSL8EorWfF4ZU83Fx1cXoA",
-      "CWxOblltVJUVK5KtHrpXxWgaa1c2Vk0MFaLuEF7TFvLkF"
+      accountToken,
+      accountSecret
     )
   )
 
