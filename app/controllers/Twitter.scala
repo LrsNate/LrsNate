@@ -38,8 +38,7 @@ object Twitter extends RESTController {
     req flatMap { e =>
       val emb = WS.url(twitter + "/statuses/oembed.json")
         .withQueryString(
-          "id" -> e.json.asInstanceOf[JsArray](0).\("id").toString,
-          "omit_script" -> "true"
+          "id" -> e.json.asInstanceOf[JsArray](0).\("id").toString
         ).sign(oauth)
         .get()
       emb map {
