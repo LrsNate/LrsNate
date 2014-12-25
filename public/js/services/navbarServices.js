@@ -5,7 +5,7 @@ navbarServices.factory('navbarService', function () {
        init: function () {
            angular.element('.navbar-link').click(function () {
                var toggle = angular.element('.navbar-toggle');
-               if (!toggle.hasClass('collapsed'))
+               if (angular.element('.navbar-collapse').hasClass('in'))
                    toggle.click();
            });
        },
