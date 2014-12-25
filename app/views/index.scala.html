@@ -5,7 +5,7 @@
   <head>
     <title>Nate.</title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="@routes.WebJarAssets.at(WebJarAssets.locate("bootstrap.min.css"))">
     <link rel="stylesheet" media="screen" href="@routes.Assets.at("css/main.css")">
     <link rel="stylesheet" media="screen" href="@routes.Assets.at("css/animewatching.css")">
     <link rel="stylesheet" media="screen" href="@routes.Assets.at("css/aboutme.css")">
@@ -15,12 +15,12 @@
   <body>
     @navbar()
     <div ui-view></div>
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0/angular.min.js"></script>
-    <script src="@routes.Assets.at("js/lib/angular-ui-router.min.js")"></script>
-    <script src="@routes.Assets.at("js/lib/fastclick.js")"></script>
-    <script src="@routes.Assets.at("js/lib/ui-bootstrap-0.11.2.min.js")"></script>
+    <script src="@routes.WebJarAssets.at(WebJarAssets.locate("jquery.min.js"))"></script>
+    <script src="@routes.WebJarAssets.at(WebJarAssets.locate("bootstrap.min.js"))"></script>
+    <script src="@routes.WebJarAssets.at(WebJarAssets.locate("angular.min.js"))"></script>
+    <script src="@routes.WebJarAssets.at(WebJarAssets.locate("angular-ui-router.min.js"))"></script>
+    <script src="@routes.WebJarAssets.at(WebJarAssets.locate("fastclick.js"))"></script>
+    <script src="@routes.WebJarAssets.at(WebJarAssets.locate("ui-bootstrap.min.js"))"></script>
     <script src="@routes.Assets.at("js/services/navbarServices.js")"></script>
     <script src="@routes.Assets.at("js/services/restServices.js")"></script>
     <script src="@routes.Assets.at("js/controllers/aboutControllers.js")"></script>

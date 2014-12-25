@@ -38,6 +38,6 @@ app.run([
     'navbarService',
     function (navbarService) {
         navbarService.init();
-        Origami.fastclick(document.body);
+        FastClick.attach(document.body, {});
     }
 ]);
