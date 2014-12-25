@@ -1,11 +1,12 @@
 package controllers
 
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import play.api.libs.json.Json
+import play.api.libs.json.{JsArray, Json}
 import play.api.libs.ws.{WSResponse, WS}
 import play.api.mvc.Action
 import play.api.Play.current
 import play.api.Play.configuration
+import utils.AnimeList
 
 import scala.concurrent.Future
 
@@ -23,11 +24,15 @@ object Anime extends RESTController {
 
   def lists = cached("anime.lists")(Action.async {
     getList("currently-watching") flatMap { watching =>
-      getList("completed") map { completed =>
-        Ok(Json.obj(
-          "watching" -> watching.json,
-          "completed" -> completed.json
-        ))
+      getList("completed") flatMap { completed =>
+        AnimeList.getLast(watching.json.as[JsArray], None) flatMap { w =>
+          AnimeList.getLast(completed.json.as[JsArray], Some(5)) map { c =>
+            Ok(Json.obj(
+              "watching" -> w,
+              "completed" -> c
+            ))
+          }
+        }
       } recover {
         case e: Throwable => InternalServerError(Json.obj("error" -> e.getMessage))
       }

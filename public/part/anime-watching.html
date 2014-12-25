@@ -2,7 +2,7 @@
   <div ng-switch-when="ok">
     <h2>Currently watching</h2>
     <accordion close-others="true">
-      <accordion-group ng-repeat="anime in data.watching | orderBy:'last_watched':true" is-open="status.open">
+      <accordion-group ng-repeat="anime in data.watching" is-open="status.open">
         <accordion-heading>
           <div class="aw-entry" ng-class="{'aw-entry-first': $first}">
             <div class="aw-caret">
@@ -36,6 +36,7 @@
               <em>{{ anime.anime.alternate_title }}</em>
             </p>
             <p><strong>Type:</strong> <em>{{ anime.anime.show_type }}</em></p>
+            <p><strong>Genres:</strong> <em><span ng-repeat="g in anime.anime.genres">{{ g.name }}{{ !$last && ", " || "" }}</span></em></p>
             <p>{{ anime.anime.synopsis }}</p>
           </div>
         </div>
@@ -43,7 +44,7 @@
     </accordion>
     <h2>Recently completed</h2>
     <accordion close-others="true">
-      <accordion-group ng-repeat="anime in data.completed | orderBy:'last_watched':true | slice:0:5" is-open="status.open">
+      <accordion-group ng-repeat="anime in data.completed" is-open="status.open">
         <accordion-heading>
           <div class="aw-entry" ng-class="{'aw-entry-first': $first}">
             <div class="aw-caret">
@@ -75,6 +76,7 @@
               <em>{{ anime.anime.alternate_title }}</em>
             </p>
             <p><strong>Type:</strong> <em>{{ anime.anime.show_type }}</em></p>
+            <p><strong>Genres:</strong> <em><span ng-repeat="g in anime.anime.genres">{{ g.name }}{{ !$last && ", " || "" }}</span></em></p>
             <p>{{ anime.anime.synopsis }}</p>
           </div>
         </div>
