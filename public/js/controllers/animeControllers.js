@@ -12,15 +12,15 @@ animeControllers.controller('animeWatchingCtrl', [
         navbarService.setPage('anime');
 
         $scope.loadPage = function () {
-            $scope.status = "loading";
+            $scope.pageStatus = "loading";
             $scope.data = {};
             restService.getAnimelists(function (data, status) {
                 if (status / 100 == 2) {
                     $scope.data = data;
-                    $scope.status = "ok";
+                    $scope.pageStatus = "ok";
                 }
                 else {
-                    $scope.status = "error";
+                    $scope.pageStatus = "error";
                 }
             });
         };
