@@ -25,7 +25,7 @@ object AnimeList {
         .withHeaders("X-Mashape-Key" -> apiKey)
         .get() map { a =>
         val anime = o \ "anime"
-        val genres = (a.json \ "genres") getOrElse Json.obj()
+        val genres = a.json \ "genres"
         o ++ Json.obj("anime" -> (anime.as[JsObject] ++ Json.obj("genres" -> genres)))
       }
     }
