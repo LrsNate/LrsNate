@@ -8,6 +8,10 @@
 	border: 1px solid gray;
 }
 
+.unit {
+    background-color: gray;
+}
+
 .selected {
-    background-color: red;
+    border-color: red;
 }
