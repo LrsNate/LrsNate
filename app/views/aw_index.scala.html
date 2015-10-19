@@ -1,43 +1,27 @@
 @()
 <!DOCTYPE html>
-<html>
+<html ng-app="awApp">
   <head>
     <title>Advance Wars Online</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="@routes.WebJarAssets.at(WebJarAssets.locate("bootstrap.min.css"))" />
     <link rel="stylesheet" media="screen" href="@routes.Assets.at("aw/css/main.css")">
   </head>
-  <body>
+  <body ng-controller="GameController">
   	<p><a href="/">Back home</a></p>
-  	<div id="grid" class="container">
-      <div class="row">
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
+  	<div class="container">
+      <div class="row" ng-repeat="(y, row) in grid track by y">
+        <div class="cell"
+            ng-click="cellClick(cell, x, y)"
+            ng-class="cellClasses(cell, x, y)"
+            ng-repeat="(x, cell) in row track by x">
+        </div>
       </div>
-      <div class="row">
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-      </div>
-      <div class="row">
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-      </div>
-      <div class="row">
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-      </div>
-  	</div>
+    </div>
+    <script src="@routes.WebJarAssets.at(WebJarAssets.locate("jquery.min.js"))"></script>
+    <script src="@routes.WebJarAssets.at(WebJarAssets.locate("bootstrap.min.js"))"></script>
+    <script src="@routes.WebJarAssets.at(WebJarAssets.locate("angular.min.js"))"></script>
+    <script src="@routes.Assets.at("aw/js/controllers/controllers.js")"></script>
+    <script src="@routes.Assets.at("aw/js/app.js")"></script>
   </body>
 </html>

@@ -7,3 +7,7 @@
 	width: 30px;
 	border: 1px solid gray;
 }
+
+.selected {
+    background-color: red;
+}
