@@ -12,6 +12,7 @@ GET        /twitter/mention        controllers.Twitter.lastMention
 GET        /tumblr/posts           controllers.Tumblr.posts
 
 GET        /aw                     controllers.AdvanceWars.index
+GET        /aw/map/default         controllers.AdvanceWars.defaultMap
 
 GET        /                       controllers.Home.index
 

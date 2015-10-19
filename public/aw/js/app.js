@@ -1,1 +1,1 @@
-var app = angular.module('awApp', ['controllers']);
+var app = angular.module('awApp', ['controllers', 'services']);

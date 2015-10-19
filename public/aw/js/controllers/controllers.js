@@ -1,52 +1,15 @@
 var controllers = angular.module('controllers', []);
 
 controllers.controller('GameController', [
+    'restService',
     '$scope',
-    function ($scope) {
+    function (restService, $scope) {
         'use strict';
-        $scope.grid = [
-            [
-                {type: "plain"},
-                {type: "plain"},
-                {type: "plain"},
-                {type: "plain"},
-                {type: "plain"}
-            ],
-            [
-                {type: "plain"},
-                {type: "plain"},
-                {type: "plain"},
-                {type: "plain"},
-                {type: "plain"}
-            ],
-            [
-                {type: "plain"},
-                {type: "plain"},
-                {type: "plain"},
-                {type: "plain"},
-                {type: "plain"}
-            ],
-            [
-                {type: "plain"},
-                {type: "plain"},
-                {type: "plain"},
-                {type: "plain"},
-                {type: "plain"}
-            ]
-        ];
-
-        var units = [
-            {
-                type: "inftr",
-                x: 1,
-                y: 1
-            }
-        ];
-
-        $scope.selectedUnit = {};
-
-        angular.forEach(units, function (u) {
-            $scope.grid[u.y][u.x].unit = {type: u.type};
+        restService.getDefaultMap(function (data) {
+            $scope.grid = data.grid;
+            angular.forEach(data.units, function (u) {
+                $scope.grid[u.y][u.x].unit = {type: u.type};
+            });
         });
 
         $scope.cellClick = function (cell, x, y) {
