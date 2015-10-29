@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/LrsNate/LrsNate.svg)](https://travis-ci.org/LrsNate/LrsNate)
+
 This is your new Play application
 =================================
 
