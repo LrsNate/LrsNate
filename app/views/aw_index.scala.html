@@ -11,12 +11,15 @@
   <body ng-controller="GameController">
   	<p><a href="/">Back home</a></p>
   	<div class="container">
+      <div class="row" id="buttons">
+        <a type="button" class="btn btn-default" ng-click="loadMap()">Reload</a>
+      </div>
       <div class="row" ng-repeat="(y, row) in grid track by y">
         <div class="cell"
-            ng-click="cellClick(cell, x, y)"
-            ng-mouseenter="cellMouseEnter(cell, x, y)"
-            ng-mouseout="cellMouseOut(cell, x, y)"
-            ng-class="cellClasses(cell, x, y)"
+            ng-click="cellClick(x, y)"
+            ng-mouseenter="cellMouseEnter(x, y)"
+            ng-mouseout="cellMouseOut(x, y)"
+            ng-class="cellClasses(x, y)"
             ng-repeat="(x, cell) in row track by x">
         </div>
       </div>

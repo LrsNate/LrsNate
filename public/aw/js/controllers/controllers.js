@@ -5,63 +5,74 @@ controllers.controller('GameController', [
     '$scope',
     function (restService, $scope) {
         'use strict';
-        restService.getDefaultMap(function (data) {
-            $scope.grid = data.grid;
-            angular.forEach(data.units, function (u) {
-                $scope.grid[u.y][u.x].unit = {kind: u.kind, x: u.x, y: u.y};
+
+        $scope.loadMap = function () {
+            restService.getDefaultMap(function (data) {
+                $scope.grid = data.grid;
+                angular.forEach(data.units, function (u) {
+                    $scope.grid[u.y][u.x].unit = {kind: u.kind, x: u.x, y: u.y};
+                });
             });
-        });
+        };
+        $scope.loadMap();
 
-        console.log($scope.grid);
+        $scope.selectedUnit = null;
 
-        $scope.selectedUnit = {};
+        function clearMap() {
+            for (var y = 0; y < $scope.grid.length; y++) {
+                for (var x = 0; x < $scope.grid[y].length; x++) {
+                    $scope.grid[y][x].selected = false;
+                }
+            }
+        }
 
-        $scope.cellClick = function (cell, x, y) {
-            var element = angular.element('.x' + x + '.y' + y),
-                wasSelected = element.hasClass('cell-selected');
-            angular.element('.cell-selected').removeClass('cell-selected');
+        $scope.cellClick = function (x, y) {
+            var cell = $scope.grid[y][x],
+                wasSelected = cell.selected;
+            clearMap();
             if (!wasSelected) {
-                element.addClass('cell-selected');
-                if (element.hasClass('unit')) {
+                cell.selected = true;
+                if (cell.unit) {
                     $scope.selectedUnit = {
                         kind: $scope.grid[y][x].unit.kind,
                         x: x,
                         y: y
                     };
                 }
-                else if (!angular.equals({}, $scope.selectedUnit)) {
+                else if ($scope.selectedUnit) {
                     var oldX = $scope.selectedUnit.x,
                         oldY = $scope.selectedUnit.y;
-                    $scope.grid[y][x].unit = $scope.selectedUnit;
-                    $scope.grid[oldY][oldX].unit = {};
-                    angular.element('.x' + oldX + '.y' + oldY)
-                        .removeClass('unit')
-                        .removeClass('unit-' + $scope.selectedUnit.kind);
-                    element.addClass('unit')
-                        .addClass('unit-' + $scope.selectedUnit.kind);
-                    $scope.selectedUnit = {};
-                    element.removeClass('cell-selected');
+                    cell.unit = $scope.selectedUnit;
+                    $scope.grid[oldY][oldX].unit = null;
+                    $scope.selectedUnit = null;
+                    cell.selected = false;
                 }
             }
             else {
-                $scope.selectedUnit = {};
+                $scope.selectedUnit = null;
             }
-            console.log($scope.grid);
         };
 
-        $scope.cellMouseEnter = function (cell, x, y) {
-            angular.element('.x' + x + '.y' + y).addClass('cell-hover');
+        $scope.cellMouseEnter = function (x, y) {
+            $scope.grid[y][x].hover = true;
         };
 
-        $scope.cellMouseOut = function (cell, x, y) {
-            angular.element('.x' + x + '.y' + y).removeClass('cell-hover');
+        $scope.cellMouseOut = function (x, y) {
+            $scope.grid[y][x].hover = false;
         };
 
-        $scope.cellClasses = function (cell, x, y) {
-            var base = [cell.kind, 'x' + x, 'y' + y];
+        $scope.cellClasses = function (x, y) {
+            var cell = $scope.grid[y][x],
+                base = ['field', 'field-' + cell.kind, 'x' + x, 'y' + y];
             if (cell.unit) {
                 base.push('unit');
                 base.push('unit-' + cell.unit.kind);
+            }
+            if (cell.hover) {
+                base.push('cell-hover');
+            }
+            if (cell.selected) {
+                base.push('cell-selected');
             }
             return base;
         };
