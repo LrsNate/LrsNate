@@ -6,12 +6,18 @@
 	height: 30px;
 	width: 30px;
 	border: 1px solid gray;
+    margin-right: 1px;
+    margin-bottom: 1px;
 }
 
 .unit {
     background-color: gray;
 }
 
-.selected {
-    border-color: red;
+.cell-hover {
+    border: 2px solid red;
+}
+
+.cell-selected {
+    border: 2px solid blue;
 }

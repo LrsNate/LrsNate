@@ -5,7 +5,8 @@
     <title>Advance Wars Online</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="@routes.WebJarAssets.at(WebJarAssets.locate("bootstrap.min.css"))" />
-    <link rel="stylesheet" media="screen" href="@routes.Assets.at("aw/css/main.css")">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.at("aw/css/main.css")" />
+    <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("img/favicon.ico")">
   </head>
   <body ng-controller="GameController">
   	<p><a href="/">Back home</a></p>
@@ -13,6 +14,8 @@
       <div class="row" ng-repeat="(y, row) in grid track by y">
         <div class="cell"
             ng-click="cellClick(cell, x, y)"
+            ng-mouseenter="cellMouseEnter(cell, x, y)"
+            ng-mouseout="cellMouseOut(cell, x, y)"
             ng-class="cellClasses(cell, x, y)"
             ng-repeat="(x, cell) in row track by x">
         </div>
