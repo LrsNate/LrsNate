@@ -2,12 +2,12 @@ package controllers
 
 import models.{Mob, Cell, Grid}
 import play.api.libs.json.Json
-import play.api.mvc.Action
+import play.api.mvc.{Controller, Action}
 
 /**
  * Created by Nate on 18/10/15.
  */
-object AdvanceWars extends RESTController {
+trait AdvanceWars extends Controller {
   def index = Action(Ok(views.html.aw_index()))
 
   def defaultMap = Action {
@@ -23,3 +23,5 @@ object AdvanceWars extends RESTController {
     Ok(Json.toJson(Grid(map, units)))
   }
 }
+
+object AdvanceWars extends Controller with AdvanceWars
