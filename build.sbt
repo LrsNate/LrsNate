@@ -14,6 +14,7 @@ libraryDependencies ++= Seq(
   "org.webjars" % "angular-ui-router" % "0.2.13",
   "org.webjars" % "fastclick" % "1.0.3",
   "org.webjars" % "angular-ui-bootstrap" % "0.12.0",
+  "org.scalatest" % "scalatest_2.11" % "2.2.4" % "test",
   cache,
   ws
 )
