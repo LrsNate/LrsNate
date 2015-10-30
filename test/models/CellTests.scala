@@ -11,10 +11,6 @@ class CellTests extends FlatSpec with Matchers {
   val cell = Cell("plain")
   val jsobj = Json.obj("kind" -> "plain")
 
-  "This test" must "fail" in {
-    assert(false)
-  }
-
   "A Cell" can "be read from a Json object" in {
     jsobj.as[Cell] shouldBe cell
   }
