@@ -15,6 +15,23 @@ case class Grid(private val _cells: Seq[Seq[Cell]], units: Seq[Mob]) {
       if (_cells forall { p => p.length == _cells.head.length }) _cells
       else throw new IllegalArgumentException("Irregular map")
   }
+
+  def moveUnit(move: Move): Grid = {
+    def isOriginUnit(m: Mob) = {
+      m.kind == move.from.kind &&
+      m.x == move.from.x &&
+      m.y == move.from.y
+    }
+    if (!(units contains move.from)) {
+      throw new NoSuchElementException("No such unit")
+    }
+    // TODO: Unit collisions
+    val updatedUnits = units map { m =>
+      if (isOriginUnit(m)) Mob(m.kind, move.to.x, move.to.y)
+      else m
+    }
+    Grid(cells, updatedUnits)
+  }
 }
 
 object Grid {

@@ -22,6 +22,10 @@ trait AdvanceWars extends Controller {
     val units = Seq(Mob("inftr", 1, 1))
     Ok(Json.toJson(Grid(map, units)))
   }
+
+  def moveUnit = Action(parse.json) { body =>
+    NotImplemented
+  }
 }
 
 object AdvanceWars extends Controller with AdvanceWars
