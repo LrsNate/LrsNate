@@ -31,7 +31,7 @@ class MoveTests extends FlatSpec with Matchers {
   }
 
   it can "be read from a Json object" in {
-    jsobj.as[Move] shouldBe move
+    jsobj.asOpt[Move] shouldBe Some(move)
   }
 
   it can "reject invalid Json input" in {

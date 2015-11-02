@@ -1,6 +1,6 @@
 package controllers
 
-import models.Grid
+import models.{Game, Grid}
 import org.scalatest.{Matchers, FlatSpec}
 import play.api.mvc.Controller
 import play.api.test.{Helpers, FakeRequest}
@@ -15,9 +15,9 @@ class AdvanceWarsTests extends FlatSpec with Matchers {
 
   val controller = new AdvanceWarsTestCtrl
 
-  "The default map controller" should "return a valid grid" in {
-    val result = controller.defaultMap.apply(FakeRequest())
+  "The game state controller" should "return a valid game state" in {
+    val result = controller.getGameState("1").apply(FakeRequest())
     val body = Helpers.contentAsJson(result)
-    body.as[Grid]
+    body.asOpt[Game] shouldBe defined
   }
 }

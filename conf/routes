@@ -12,7 +12,7 @@ GET        /twitter/mention        controllers.Twitter.lastMention
 GET        /tumblr/posts           controllers.Tumblr.posts
 
 GET        /aw                     controllers.AdvanceWars.index
-GET        /aw/map/default         controllers.AdvanceWars.defaultMap
+GET        /aw/game/:id            controllers.AdvanceWars.getGameState(id)
 
 GET        /                       controllers.Home.index
 

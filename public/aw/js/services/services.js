@@ -10,8 +10,8 @@ services.factory('restService', [
         'use strict';
         var service = {};
 
-        service.getDefaultMap = function (onComplete) {
-            $http.get('/aw/map/default')
+        service.getDefaultGameState = function (onComplete) {
+            $http.get('/aw/game/1')
                 .success(onComplete)
                 .error(onComplete);
         };

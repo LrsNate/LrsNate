@@ -33,7 +33,7 @@ class GridTests extends FlatSpec with Matchers {
   }
 
   it can "be read from a Json object" in {
-    jsobj.as[Grid] shouldBe Grid(cells, units)
+    jsobj.asOpt[Grid] shouldBe Some(Grid(cells, units))
   }
 
   it should "reject invalid Json input" in {

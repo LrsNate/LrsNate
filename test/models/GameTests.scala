@@ -1,7 +1,7 @@
 package models
 
 import org.scalatest.{FlatSpec, Matchers}
-import play.api.libs.json.Json
+import play.api.libs.json.{JsError, JsSuccess, Json}
 
 /**
  * Created by Nate on 31/10/15.
@@ -27,7 +27,7 @@ class GameTests extends FlatSpec with Matchers {
   }
 
   "A Game" can "be read from a Json object" in {
-    jsobj.as[Game] shouldBe game
+    jsobj.asOpt[Game] shouldBe Some(game)
   }
 
   it should "reject invalid Json input" in {

@@ -7,9 +7,9 @@ controllers.controller('GameController', [
         'use strict';
 
         $scope.loadMap = function () {
-            restService.getDefaultMap(function (data) {
-                $scope.grid = data.grid;
-                angular.forEach(data.units, function (u) {
+            restService.getDefaultGameState(function (data) {
+                $scope.grid = data.grid.grid;
+                angular.forEach(data.grid.units, function (u) {
                     $scope.grid[u.y][u.x].unit = {kind: u.kind, x: u.x, y: u.y};
                 });
             });
