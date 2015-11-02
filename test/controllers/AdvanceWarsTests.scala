@@ -1,8 +1,8 @@
 package controllers
 
-import models.{Game, Grid}
+import mocks.GameDaoMock
+import models.Game
 import org.scalatest.{Matchers, FlatSpec}
-import play.api.mvc.Controller
 import play.api.test.{Helpers, FakeRequest}
 import play.api.test.Helpers.defaultAwaitTimeout
 
@@ -11,7 +11,7 @@ import play.api.test.Helpers.defaultAwaitTimeout
  */
 class AdvanceWarsTests extends FlatSpec with Matchers {
 
-  class AdvanceWarsTestCtrl extends Controller with AdvanceWars
+  class AdvanceWarsTestCtrl extends  AdvanceWars(new GameDaoMock)
 
   val controller = new AdvanceWarsTestCtrl
 
