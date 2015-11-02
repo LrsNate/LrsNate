@@ -11,7 +11,7 @@ import play.api.test.Helpers.defaultAwaitTimeout
  */
 class AdvanceWarsTests extends FlatSpec with Matchers {
 
-  class AdvanceWarsTestCtrl extends  AdvanceWars(new GameDaoMock)
+  class AdvanceWarsTestCtrl extends AdvanceWars(new GameDaoMock)
 
   val controller = new AdvanceWarsTestCtrl
 
