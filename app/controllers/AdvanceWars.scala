@@ -1,30 +1,22 @@
 package controllers
 
-import models.{Game, Mob, Cell, Grid}
+import dao.{MongoGameDao, GameDao}
+import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.libs.json.Json
 import play.api.mvc.{Controller, Action}
 
 /**
  * Created by Nate on 18/10/15.
  */
-trait AdvanceWars extends Controller {
-
-  val row = Seq(
-    Cell("plain"),
-    Cell("plain"),
-    Cell("plain"),
-    Cell("plain"),
-    Cell("plain")
-  )
-  val map = Seq(row, row, row, row)
-  val units = Seq(Mob("inftr", 1, 1))
+class AdvanceWars(gameDao: GameDao) extends Controller {
 
   def index = Action(Ok(views.html.aw_index()))
 
-  def getGameState(gameId: String) = Action {
-    gameId match {
-      case "1" => Ok(Json.toJson(Game("1", Grid(map, units))))
-      case _ => NotFound
+  def getGameState(gameId: String) = Action.async {
+    gameDao.getGameState(gameId) map { opt =>
+      opt map { game =>
+        Ok(Json.toJson(game))
+      } getOrElse NotFound
     }
   }
 
@@ -33,4 +25,4 @@ trait AdvanceWars extends Controller {
   }
 }
 
-object AdvanceWars extends Controller with AdvanceWars
+object AdvanceWars extends AdvanceWars(new MongoGameDao)

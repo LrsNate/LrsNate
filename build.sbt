@@ -7,6 +7,7 @@ lazy val root = (project in file(".")).enablePlugins(PlayScala)
 scalaVersion := "2.11.7"
 
 libraryDependencies ++= Seq(
+  "org.reactivemongo" %% "play2-reactivemongo" % "0.11.4.play23",
   "org.webjars" %% "webjars-play" % "2.3.0-3",
   "org.webjars" % "bootstrap" % "3.3.5",
   "org.webjars" % "angularjs" % "1.3.8",
