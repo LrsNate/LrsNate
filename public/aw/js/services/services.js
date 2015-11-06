@@ -10,8 +10,14 @@ services.factory('restService', [
         'use strict';
         var service = {};
 
-        service.getDefaultGameState = function (onComplete) {
-            $http.get('/aw/game/1')
+        service.getGameState = function (gameId, onComplete) {
+            $http.get('/aw/game/' + gameId)
+                .success(onComplete)
+                .error(onComplete);
+        };
+
+        service.moveUnit = function (move, onComplete) {
+            $http.post('/aw/move/unit', move)
                 .success(onComplete)
                 .error(onComplete);
         };

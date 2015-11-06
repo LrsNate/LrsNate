@@ -14,13 +14,16 @@ class GridTests extends FlatSpec with Matchers {
     Seq(row, row)
   }
 
-  val units = Seq(Mob("inftr", 1, 0))
+  val units = Seq(Mob("inftr", 0, 0), Mob("inftr", 0, 2))
 
   val jsobj = {
     val cell = Json.obj("kind" -> "plain")
     val row = Json.arr(cell, cell, cell)
     val grid = Json.arr(row, row)
-    val units = Json.arr(Json.obj("kind" -> "inftr", "x" -> 1, "y" -> 0))
+    val units = Json.arr(
+      Json.obj("kind" -> "inftr", "x" -> 0, "y" -> 0),
+      Json.obj("kind" -> "inftr", "x" -> 0, "y" -> 2)
+    )
     Json.obj("grid" -> grid, "units" -> units)
   }
 
@@ -42,5 +45,28 @@ class GridTests extends FlatSpec with Matchers {
 
   it can "be converted to a Json object" in {
     Json.toJson(Grid(cells, units)) shouldBe jsobj
+  }
+
+  it can "apply a unit move" in {
+    val res = Grid(cells, units) moveUnit Move("", Mob("inftr", 0, 0), Mob("inftr", 0, 1))
+    res shouldBe Grid(cells, Seq(Mob("inftr", 0, 1), Mob("inftr", 0, 2)))
+  }
+
+  it should "reject a unit collision" in {
+      an[Exception] should be thrownBy Grid(cells, units).moveUnit(
+        Move("", Mob("inftr", 0, 0), Mob("inftr", 0, 2))
+      )
+  }
+
+  it should "reject a unit move out of the grid bounds" in {
+    an[Exception] should be thrownBy Grid(cells, units).moveUnit(
+      Move("", Mob("inftr", 0, 0), Mob("inftr", 0, 16))
+    )
+  }
+
+  it should "reject a non-existing unit" in {
+    a[NoSuchElementException] should be thrownBy Grid(cells, units).moveUnit(
+      Move("", Mob("inftr", 0, 1), Mob("inftr", 0, 0))
+    )
   }
 }

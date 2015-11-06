@@ -23,6 +23,12 @@
             ng-repeat="(x, cell) in row track by x">
         </div>
       </div>
+      <div class="row" id="status">
+        <ul class="dl-horizontal" id="status-list">
+          <li><strong>Status:</strong> <span ng-class="status.classes">{{ status.message }}</span></li>
+          <li><strong>Game ID:</strong> {{ gameId }}</li>
+        </ul>
+      </div>
     </div>
     <script src="@routes.WebJarAssets.at(WebJarAssets.locate("jquery.min.js"))"></script>
     <script src="@routes.WebJarAssets.at(WebJarAssets.locate("bootstrap.min.js"))"></script>

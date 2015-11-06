@@ -16,6 +16,9 @@ case class Grid(private val _cells: Seq[Seq[Cell]], units: Seq[Mob]) {
       else throw new IllegalArgumentException("Irregular map")
   }
 
+  val rows = cells.length
+  val cols = if (rows == 0) 0 else cells.head.length
+
   def moveUnit(move: Move): Grid = {
     def isOriginUnit(m: Mob) = {
       m.kind == move.from.kind &&
@@ -25,7 +28,12 @@ case class Grid(private val _cells: Seq[Seq[Cell]], units: Seq[Mob]) {
     if (!(units contains move.from)) {
       throw new NoSuchElementException("No such unit")
     }
-    // TODO: Unit collisions
+    if (move.to.x < 0 || move.to.x >= cols || move.to.y < 0 || move.to.y >= cols) {
+      throw new Exception("Move out of bounds")
+    }
+    if (units exists { p => p.x == move.to.x && p.y == move.to.y }) {
+      throw new Exception("Unit collision")
+    }
     val updatedUnits = units map { m =>
       if (isOriginUnit(m)) Mob(m.kind, move.to.x, move.to.y)
       else m

@@ -13,6 +13,7 @@ GET        /tumblr/posts           controllers.Tumblr.posts
 
 GET        /aw                     controllers.AdvanceWars.index
 GET        /aw/game/:id            controllers.AdvanceWars.getGameState(id)
+POST       /aw/move/unit           controllers.AdvanceWars.moveUnit
 
 GET        /                       controllers.Home.index
 

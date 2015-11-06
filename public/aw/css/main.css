@@ -2,6 +2,14 @@
     margin-bottom: 20px;
 }
 
+#status {
+    margin-top: 20px;
+}
+
+#status-list {
+    list-style-type: none;
+}
+
 .row {
 	display: flex;
 }
