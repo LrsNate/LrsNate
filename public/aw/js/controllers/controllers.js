@@ -12,15 +12,12 @@ controllers.controller('GameController', [
 
         $scope.loadMap = function () {
             restService.getGameState('1', function (data) {
-                $scope.status = {classes: ['text-warning'], message: 'Loading map...'};
+                $scope.status = $scope.statesEnum.init;
                 $scope.grid = data.grid.grid;
                 angular.forEach(data.grid['units'], function (u) {
                     $scope.grid[u.y][u.x].unit = {kind: u.kind, x: u.x, y: u.y};
-                    $scope.status = {
-                        classes: ['text-success'],
-                        message: 'Ready!'
-                    };
                 });
+                $scope.status = $scope.statesEnum.ok;
             });
         };
         $scope.loadMap();
@@ -34,36 +31,14 @@ controllers.controller('GameController', [
         }
 
         function moveUnit(from, to) {
-            $scope.status = {
-                classes: ['text-warning'],
-                message: 'Applying unit move...'
-            };
+            $scope.status = $scope.statesEnum.loading;
             var move = {
                 game_id: $scope.gameId,
                 from: from,
                 to: to
             };
             console.log(move);
-            restService.moveUnit(move, function (data, status) {
-                if (status < 300) {
-                    $scope.status = {
-                        classes: ['text-success'],
-                        message: 'Unit moved successfully!'
-                    };
-                }
-                else if (status < 500) {
-                    $scope.status = {
-                        classes: ['text-danger'],
-                        message: 'Your map is currently outdated. Please reload the map.'
-                    };
-                }
-                else {
-                    $scope.status = {
-                        classes: ['text-danger'],
-                        message: 'Something has gone terribly wrong. Please reload the page.'
-                    };
-                }
-            });
+            restService.moveUnit(move, $scope.updateStatus);
         }
 
         $scope.cellClick = function (x, y) {
