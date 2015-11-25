@@ -14,7 +14,7 @@ controllers.controller('GameController', [
             restService.getGameState('1', function (data) {
                 $scope.status = $scope.statesEnum.init;
                 $scope.grid = data.grid.grid;
-                angular.forEach(data.grid['units'], function (u) {
+                angular.forEach(data.grid.units, function (u) {
                     $scope.grid[u.y][u.x].unit = {kind: u.kind, x: u.x, y: u.y};
                 });
                 $scope.status = $scope.statesEnum.ok;
@@ -23,8 +23,9 @@ controllers.controller('GameController', [
         $scope.loadMap();
 
         function clearMap() {
-            for (var y = 0; y < $scope.grid.length; y++) {
-                for (var x = 0; x < $scope.grid[y].length; x++) {
+            var y, x;
+            for (y = 0; y < $scope.grid.length; y += 1) {
+                for (x = 0; x < $scope.grid[y].length; x += 1) {
                     $scope.grid[y][x].selected = false;
                 }
             }
@@ -37,13 +38,14 @@ controllers.controller('GameController', [
                 from: from,
                 to: to
             };
-            console.log(move);
             restService.moveUnit(move, $scope.updateStatus);
         }
 
         $scope.cellClick = function (x, y) {
             var cell = $scope.grid[y][x],
-                wasSelected = cell.selected;
+                wasSelected = cell.selected,
+                oldX,
+                oldY;
             clearMap();
             if (!wasSelected) {
                 cell.selected = true;
@@ -53,10 +55,9 @@ controllers.controller('GameController', [
                         x: x,
                         y: y
                     };
-                }
-                else if ($scope.selectedUnit) {
-                    var oldX = $scope.selectedUnit.x,
-                        oldY = $scope.selectedUnit.y;
+                } else if ($scope.selectedUnit) {
+                    oldX = $scope.selectedUnit.x;
+                    oldY = $scope.selectedUnit.y;
                     $scope.selectedUnit.x = x;
                     $scope.selectedUnit.y = y;
                     moveUnit(
@@ -68,8 +69,7 @@ controllers.controller('GameController', [
                     $scope.selectedUnit = null;
                     cell.selected = false;
                 }
-            }
-            else {
+            } else {
                 $scope.selectedUnit = null;
             }
         };

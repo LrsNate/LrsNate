@@ -1,6 +1,7 @@
 var directives = angular.module('directives', []);
 
 directives.directive('awGrid', function () {
+    'use strict';
     return {
         restrict: 'E',
         templateUrl: '/assets/aw/tpl/aw_grid.html',

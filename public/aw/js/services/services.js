@@ -1,7 +1,3 @@
-/**
- * Created by nate on 10/19/15.
- */
-
 var services = angular.module('services', []);
 
 services.factory('restService', [

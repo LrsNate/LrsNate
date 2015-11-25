@@ -1,6 +1,7 @@
 var directives = angular.module('directives');
 
 directives.directive('awStatus', function () {
+    'use strict';
     return {
         restrict: 'E',
         templateUrl: '/assets/aw/tpl/aw_status.html',
@@ -28,17 +29,17 @@ directives.directive('awStatus', function () {
                 }
             };
 
+            /*jslint unparam: true */
             scope.updateStatus = function (httpData, httpStatus) {
                 if (httpStatus < 300) {
                     scope.status = scope.statesEnum.ok;
-                }
-                else if (httpStatus < 500) {
+                } else if (httpStatus < 500) {
                     scope.status = scope.statesEnum.outdated;
-                }
-                else {
+                } else {
                     scope.status = scope.statesEnum.error;
                 }
             };
+            /*jslint unparam: false */
         }
     };
 });
