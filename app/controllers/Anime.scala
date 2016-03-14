@@ -1,49 +1,43 @@
 package controllers
 
+import javax.inject.Inject
+
+import play.api.Configuration
+import play.api.cache.Cached
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.libs.json.{JsArray, Json}
-import play.api.libs.ws.{WSResponse, WS}
-import play.api.mvc.Action
-import play.api.Play.current
-import play.api.Play.configuration
-import utils.AnimeList
+import play.api.libs.ws.WSClient
+import play.api.mvc.{Action, Controller}
+import utils.AnimeListUtil
 
-import scala.concurrent.Future
 
-object Anime extends RESTController {
+class Anime @Inject()(cached: Cached, configuration: Configuration, ws: WSClient) extends Controller {
 
-  val username = configuration.getString("hummingbird.username").get
+  val animeListUtil = new AnimeListUtil(configuration, ws)
+
+  implicit val username = configuration.getString("hummingbird.username").get
   val apiKey = configuration.getString("hummingbird.apiKey").get
 
-  def getList(status: String): Future[WSResponse] =
-    WS.url(s"https://hummingbirdv1.p.mashape.com/users/$username/library")
-      .withRequestTimeout(5000)
-      .withQueryString("status" -> status)
-      .withHeaders("X-Mashape-Key" -> apiKey)
-      .get()
-
   def lists = cached("anime.lists")(Action.async {
-    getList("currently-watching") flatMap { watching =>
-      getList("completed") flatMap { completed =>
-        AnimeList.getLast(watching.json.as[JsArray], None) flatMap { w =>
-          AnimeList.getLast(completed.json.as[JsArray], Some(5)) map { c =>
-            Ok(Json.obj(
-              "watching" -> w,
-              "completed" -> c
-            ))
-          }
-        }
-      } recover {
-        case e: Throwable => InternalServerError(Json.obj("error" -> e.getMessage))
+    for {
+      watching <- animeListUtil.getList("currently-watching") flatMap {
+        watching =>
+          animeListUtil.getLast(watching.json.as[JsArray], None)
       }
-    } recover {
-      case e: Throwable => InternalServerError(Json.obj("error" -> e.getMessage))
-    }
+      completed <- animeListUtil.getList("completed") flatMap {
+        completed =>
+          animeListUtil.getLast(completed.json.as[JsArray], Some(5))
+      }
+    } yield Ok(Json.obj(
+      "watching" -> watching,
+      "completed" -> completed
+    ))
   })
 
   def watching = cached("anime.watching")(Action.async {
-    getList("currently-watching") map { res =>
-       Ok(res.json)
+    animeListUtil.getList("currently-watching") map {
+      res =>
+        Ok(res.json)
     } recover {
       case e: Throwable => InternalServerError(Json.obj("error" -> e.getMessage))
     }
