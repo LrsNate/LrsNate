@@ -6,8 +6,7 @@ import play.api.libs.json.{JsArray, JsObject, Json}
 import play.api.libs.ws.{WSClient, WSResponse}
 
 import scala.concurrent.Future
-import scala.concurrent.duration._
-import scala.language.postfixOps
+
 
 class AnimeListUtil(configuration: Configuration, ws: WSClient) {
 
@@ -15,7 +14,7 @@ class AnimeListUtil(configuration: Configuration, ws: WSClient) {
 
   def getList(status: String)(implicit username: String): Future[WSResponse] =
     ws.url(s"https://hummingbirdv1.p.mashape.com/users/$username/library")
-      .withRequestTimeout(5.seconds)
+      .withRequestTimeout(5000)
       .withQueryString("status" -> status)
       .withHeaders("X-Mashape-Key" -> apiKey)
       .get()
@@ -32,7 +31,7 @@ class AnimeListUtil(configuration: Configuration, ws: WSClient) {
     val res = list.map { o =>
       val id = (o \ "anime" \ "id").as[Int]
       ws.url(s"https://hummingbirdv1.p.mashape.com/anime/$id")
-        .withRequestTimeout(5 seconds)
+        .withRequestTimeout(5000)
         .withHeaders("X-Mashape-Key" -> apiKey)
         .get() map { a =>
         val anime = (o \ "anime").get
