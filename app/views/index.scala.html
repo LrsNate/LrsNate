@@ -4,6 +4,7 @@
 <html ng-app="nateApp">
     <head>
         <title>Nate.</title>
+        <base href="/">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <link rel="stylesheet" href="@routes.WebJarAssets.at(webJarAssets.locate("bootstrap.min.css"))">
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("css/main.css")">
@@ -14,18 +15,18 @@
     </head>
     <body>
         @navbar()
-        <div ui-view></div>
-        <script src="@routes.WebJarAssets.at(webJarAssets.locate("jquery.min.js"))"></script>
-        <script src="@routes.WebJarAssets.at(webJarAssets.locate("bootstrap.min.js"))"></script>
-        <script src="@routes.WebJarAssets.at(webJarAssets.locate("angular.min.js"))"></script>
-        <script src="@routes.WebJarAssets.at(webJarAssets.locate("angular-ui-router.min.js"))"></script>
-        <script src="@routes.WebJarAssets.at(webJarAssets.locate("fastclick.js"))"></script>
-        <script src="@routes.WebJarAssets.at(webJarAssets.locate("ui-bootstrap.min.js"))"></script>
-        <script src="@routes.Assets.at("js/services/navbarServices.js")"></script>
-        <script src="@routes.Assets.at("js/services/restServices.js")"></script>
-        <script src="@routes.Assets.at("js/controllers/aboutControllers.js")"></script>
-        <script src="@routes.Assets.at("js/controllers/animeControllers.js")"></script>
-        <script src="@routes.Assets.at("js/controllers/homeControllers.js")"></script>
-        <script src="@routes.Assets.at("js/app.js")"></script>
+    <div ng-view></div>
+    <script src="@routes.WebJarAssets.at(webJarAssets.locate("jquery.min.js"))"></script>
+    <script src="@routes.WebJarAssets.at(webJarAssets.locate("bootstrap.min.js"))"></script>
+    <script src="@routes.WebJarAssets.at(webJarAssets.locate("angular.min.js"))"></script>
+    <script src="@routes.WebJarAssets.at(webJarAssets.locate("angular-route.min.js"))"></script>
+    <script src="@routes.WebJarAssets.at(webJarAssets.locate("fastclick.js"))"></script>
+    <script src="@routes.WebJarAssets.at(webJarAssets.locate("ui-bootstrap.min.js"))"></script>
+    <script src="@routes.Assets.at("js/services/navbarServices.js")"></script>
+    <script src="@routes.Assets.at("js/services/restServices.js")"></script>
+    <script src="@routes.Assets.at("js/controllers/aboutControllers.js")"></script>
+    <script src="@routes.Assets.at("js/controllers/animeControllers.js")"></script>
+    <script src="@routes.Assets.at("js/controllers/homeControllers.js")"></script>
+    <script src="@routes.Assets.at("js/app.js")"></script>
     </body>
 </html>

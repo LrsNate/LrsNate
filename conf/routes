@@ -4,14 +4,15 @@
 
 # Home page
 
-GET        /anime/lists            controllers.Anime.lists
-GET        /anime/watching         controllers.Anime.watching
+GET        /api/anime/lists            controllers.Anime.lists
 
-GET        /twitter/mention        controllers.Twitter.lastMention
-
-GET        /                       controllers.Home.index
+GET        /api/twitter/mention        controllers.Twitter.lastMention
 
 # Map static resources from the /public folder to the /assets URL path
-GET        /assets/*file           controllers.Assets.at(path="/public", file)
+GET        /assets/*file               controllers.Assets.at(path="/public", file)
 
-GET        /webjars/*file          controllers.WebJarAssets.at(file)
+GET        /webjars/*file              controllers.WebJarAssets.at(file)
+
+GET        /                           controllers.Home.index(any = "none")
+
+GET        /*any                       controllers.Home.index(any)

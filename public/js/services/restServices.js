@@ -5,14 +5,10 @@ restServices.factory('restService', [
     function ($http) {
         return {
             getTwitter: function (onComplete) {
-                $http.get('/twitter/mention').
-                    success(onComplete).
-                    error(onComplete);
+                $http.get('/api/twitter/mention').success(onComplete).error(onComplete);
             },
             getAnimelists: function (onComplete) {
-                $http.get('/anime/lists').
-                    success(onComplete).
-                    error(onComplete);
+                $http.get('/api/anime/lists').success(onComplete).error(onComplete);
             }
         };
     }

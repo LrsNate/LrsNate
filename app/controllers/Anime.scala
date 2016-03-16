@@ -33,13 +33,4 @@ class Anime @Inject()(cached: Cached, configuration: Configuration, ws: WSClient
       "completed" -> completed
     ))
   })
-
-  def watching = cached("anime.watching")(Action.async {
-    animeListUtil.getList("currently-watching") map {
-      res =>
-        Ok(res.json)
-    } recover {
-      case e: Throwable => InternalServerError(Json.obj("error" -> e.getMessage))
-    }
-  })
 }

@@ -1,42 +1,36 @@
 var app = angular.module('nateApp', [
-    'ui.router',
+    'ngRoute',
     'navbarServices',
     'aboutControllers',
     'animeControllers',
     'homeControllers'
 ]);
 
-app.config(['$stateProvider',
-            '$urlRouterProvider',
-    function ($stateProvider, $urlRouterProvider) {
-        $stateProvider.
-            state('aboutMe', {
-                url: '/about/me',
-                templateUrl: '/assets/part/about-me.html',
-                controller: 'aboutMeCtrl'
-            }).
-            state('aboutSite', {
-                url: '/about/site',
-                templateUrl: '/assets/part/about-site.html',
-                controller: 'aboutSiteCtrl'
-            }).
-            state('animeWatching', {
-                url: '/anime',
-                templateUrl: '/assets/part/anime-watching.html',
-                controller: 'animeWatchingCtrl'
-            }).
-            state('home', {
-                url: '',
-                templateUrl: '/assets/part/home.html',
-                controller: 'homeCtrl'
-            });
-        $urlRouterProvider.otherwise('/about/me');
-    }
-]);
+app.config(['$routeProvider', '$locationProvider',
+    function ($routeProvider, $locationProvider) {
+        'use strict';
+        $routeProvider.when('/about/me', {
+            templateUrl: '/assets/part/about-me.html',
+            controller: 'aboutMeCtrl'
+        }).when('/about/site', {
+            templateUrl: '/assets/part/about-site.html',
+            controller: 'aboutSiteCtrl'
+        }).when('/anime', {
+            templateUrl: '/assets/part/anime-watching.html',
+            controller: 'animeWatchingCtrl'
+        }).when('/', {
+            templateUrl: '/assets/part/home.html',
+            controller: 'homeCtrl'
+        }).otherwise({
+            redirectTo: '/'
+        });
+        return $locationProvider.html5Mode(true).hashPrefix("!");
+    }]);
 
 app.run([
     'navbarService',
     function (navbarService) {
+        'use strict';
         navbarService.init();
         FastClick.attach(document.body, {});
     }
