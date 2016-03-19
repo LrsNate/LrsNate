@@ -11,9 +11,9 @@ import play.api.mvc.{Action, Controller}
 import utils.AnimeListUtil
 
 
-class Anime @Inject()(cached: Cached, configuration: Configuration, ws: WSClient) extends Controller {
+class Anime @Inject()(cached: Cached, configuration: Configuration, wsClient: WSClient) extends Controller {
 
-  val animeListUtil = new AnimeListUtil(configuration, ws)
+  val animeListUtil = new AnimeListUtil(configuration, wsClient)
 
   implicit val username = configuration.getString("hummingbird.username").get
   val apiKey = configuration.getString("hummingbird.apiKey").get

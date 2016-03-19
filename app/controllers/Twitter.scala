@@ -10,7 +10,7 @@ import play.api.libs.oauth.{ConsumerKey, OAuthCalculator, RequestToken}
 import play.api.libs.ws.WSClient
 import play.api.mvc.{Action, Controller}
 
-class Twitter @Inject()(cached: Cached, configuration: Configuration, ws: WSClient) extends Controller {
+class Twitter @Inject()(cached: Cached, configuration: Configuration, wsClient: WSClient) extends Controller {
 
   val twitter = "https://api.twitter.com/1.1"
 
@@ -32,14 +32,14 @@ class Twitter @Inject()(cached: Cached, configuration: Configuration, ws: WSClie
   )
 
   def lastMention = cached("twitter.lastMention")(Action.async {
-    val req = ws.url(twitter + "/statuses/mentions_timeline.json")
+    val req = wsClient.url(twitter + "/statuses/mentions_timeline.json")
       .withQueryString("count" -> "1")
       .sign(oauth)
       .get()
 
     req flatMap { e =>
       val mentions = e.json.as[JsArray]
-      val emb = ws.url(twitter + "/statuses/oembed.json")
+      val emb = wsClient.url(twitter + "/statuses/oembed.json")
         .withQueryString(
           "id" -> mentions(0).\("id").get.toString()
         ).sign(oauth)

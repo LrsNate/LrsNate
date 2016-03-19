@@ -4,15 +4,21 @@
 
 # Home page
 
-GET        /api/anime/lists            controllers.Anime.lists
+GET        /api/anime/lists                           controllers.Anime.lists
 
-GET        /api/twitter/mention        controllers.Twitter.lastMention
+GET        /api/twitter/mention                       controllers.Twitter.lastMention
+
+GET        /mongo                                     controllers.League.get
+
+GET        /api/lol/champion/:name/profile.png        controllers.lol.Champion.getImage(name)
+
+#GET        /api/lol/champion/refresh                  controllers.lol.Champion.refresh
 
 # Map static resources from the /public folder to the /assets URL path
-GET        /assets/*file               controllers.Assets.at(path="/public", file)
+GET        /assets/*file                              controllers.Assets.at(path="/public", file)
 
-GET        /webjars/*file              controllers.WebJarAssets.at(file)
+GET        /webjars/*file                             controllers.WebJarAssets.at(file)
 
-GET        /                           controllers.Home.index(any = "none")
+GET        /                                          controllers.Home.index(any = "none")
 
-GET        /*any                       controllers.Home.index(any)
+GET        /*any                                      controllers.Home.index(any)
